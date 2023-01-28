@@ -2,6 +2,7 @@
 
 use App\Models\post;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 
 Route::get('/', function () {
     return view('home', [
@@ -23,26 +24,6 @@ Route::get('/form', function () {
     ]);
 });
 
-Route::get('/posts', function () {
-    return view('posts', [
-        "title" => "Post",
-        "posts" => post::all()
-    ]);
-});
+Route::get('/posts', [PostController::class, 'index']);
 
-Route::get('/posts/{slug}', function ($slug) {
-
-    // $posts = post::all();
-    // $new_post = [];
-
-    // foreach ($posts as $post) {
-    //     if ($post["slug"] === $slug) {
-    //         $new_post = $post;
-    //     }
-    // }
-
-    return view('post', [
-        "title" => "Single Post",
-        "post" => post::find($slug)
-    ]);
-});
+Route::get('/posts/{slug}', [PostController::class, 'show']);
