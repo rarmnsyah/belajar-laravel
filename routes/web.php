@@ -17,6 +17,7 @@ Route::get('/about', function () {
         "title" => "About"
     ]);
 });
+// tambahan
 
 Route::get('/form', function () {
     return view('form', [
