@@ -11,11 +11,11 @@ class PostController extends Controller
     {
         return view('posts', [
             "title" => "Post",
-            "posts" => post::all()
+            "posts" => Post::all()
         ]);
     }
 
-    public function show(post $post)
+    public function show(Post $post)
     {
         return view('post', [
             "title" => "Single Post",
