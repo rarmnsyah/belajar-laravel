@@ -7,7 +7,9 @@
     <h3> 
         <a href="posts/{{$post->slug }}"> {{$post->title}} </a>
     </h3>
-    <h6 class = "mb-4"> {{ $post->excerpt }} </h6>
+    <p>by : <a href="../users/{{$post->user->id}}"> {{ $post->user->name }} </a>
+    </p>
+    <p class = "mb-5"> {{ $post->excerpt }} </p>
 </article>
 
 @endforeach

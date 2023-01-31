@@ -7,7 +7,8 @@
     <h3> 
         <a href="../posts/{{$post->slug }}"> {{$post->title}} </a>
     </h3>
-    <p class = "mb-4"> {{ $post->excerpt }} </p>
+    <p> {{ $post->excerpt }} </p>
+    <p  class = "mb-5">by : <a href="../users/{{$post->user->id}}"> {{ $post->user->name }} </a>
 </article> 
 
 
