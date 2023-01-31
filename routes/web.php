@@ -49,7 +49,7 @@ Route::get('/categories/{category:slug}', function (Category $category) {
 Route::get('users', function () {
     return view('users', [
         'title' => 'User',
-        'users' => User::all()
+        'users' => User::latest()
     ]);
 });
 

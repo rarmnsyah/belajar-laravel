@@ -2,6 +2,8 @@
 
 @section('container')
 
+<h2>Category : {{ $title }}</h2>
+
 @foreach ($posts as $post)
 <article class = 'mt-3'>
     <h3> 
