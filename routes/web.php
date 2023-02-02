@@ -32,31 +32,29 @@ Route::get('/posts', [PostController::class, 'index']);
 Route::get('/posts/{post:slug}', [PostController::class, 'show']);
 
 Route::get('/categories', function () {
-    return view('categories', [
+    return view('posts', [
         'title' => 'Post Categories',
-        'categories' => Category::all()
+        'posts' => Category::all()
     ]);
 });
 
 Route::get('/categories/{category:slug}', function (Category $category) {
-    return view('category', [
+    return view('posts', [
         'title' => $category->name,
-        'posts' => $category->post,
-        'category' => $category->name
+        'posts' => $category->post->load('category', 'user')
     ]);
 });
 
 Route::get('users', function () {
-    return view('users', [
+    return view('posts', [
         'title' => 'User',
-        'users' => User::latest()
+        'posts' => User::all()
     ]);
 });
 
 Route::get('/users/{user:id}', function (User $user) {
-    return view('user', [
+    return view('posts', [
         'title' => $user->name,
-        'posts' => $user->post,
-        'user' => $user->name
+        'posts' => $user->post->load('category', 'user'),
     ]);
 });
