@@ -32,7 +32,7 @@ Route::get('/posts', [PostController::class, 'index']);
 Route::get('/posts/{post:slug}', [PostController::class, 'show']);
 
 Route::get('/categories', function () {
-    return view('posts', [
+    return view('categories', [
         'title' => 'Post Categories',
         'posts' => Category::all()
     ]);

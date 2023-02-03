@@ -67,8 +67,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Category::create([
-            'name' => 'Web anjay',
-            'slug' => 'web-anjay'
+            'name' => 'Programming',
+            'slug' => 'programming'
         ]);
 
         Post::factory(25)->create();
