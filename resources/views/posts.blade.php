@@ -2,10 +2,6 @@
 
 @section('container')
 
-<div class="judul">
-    <h1 class = "mx-auto mb-5">All {{ $title }}s</h1>
-</div>
-
 <style>
     #unsplashImage{
     }
@@ -16,6 +12,23 @@
         text-align: center;
     }
 </style>
+
+<div class="judul">
+    <h1 class = "mx-auto mb-3">All {{ $title }}s</h1>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 ">
+            <form action="/posts">
+                <div class="input-group mb-4">
+                    <input type="text" class="form-control" placeholder="Search" name = "search">
+                    <button class="btn btn-primary" type="submit">Search..</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 @if ($posts->count())
     <div class="card mb-3">
@@ -29,30 +42,32 @@
             <a class = "btn btn-primary text-decoration-none" href="/posts/{{ $posts[0]->slug }}"> Read more </a>
         </div>
     </div>
+
+
+    <div class="container">
+        <div class="row content-justify-center">
+            @foreach ($posts->skip(1) as $post)
+                <div class="col-md-4 mb-4" >
+                    <div class="card-group" style="width: 18rem;">
+                        <div class = "position-absolute px-3 py-2 bg-dark" style = "background-color: rgba(0, 0, 0, 0.6)"> <a class = "text-white" href="/categories/{{ $post->category->slug}}">{{ $post->category->name }}</a> </div>
+                        <img src = "https://source.unsplash.com/500x400?{{ $post->category->slug }}" class="card-img-top" alt="...">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">{{ $post->title }}</h5>
+                            <small class = "text-muted">
+                                <p> by : <a href="../users/{{$posts[0]->user->id}}"> {{ $posts[0]->user->name }} </a>  {{$posts[0]->created_at->diffForHumans()}} </p>
+                            </small>
+                            <p class="card-text">{{ $post->excerpt }}</p>
+                            <a class = "btn btn-primary text-decoration-none" href="/posts/{{ $post->slug }}"> Read more </a>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+
 @else
     <p> No {{ $title }}s found </p>
 @endif
-
-<div class="container col d-flex justify-content-center ms-5">
-    <div class="row">
-        @foreach ($posts->skip(1) as $post)
-            <div class="col-md-4 mb-5">
-                <div class="card" style="width: 18rem;">
-                    <div class = "position-absolute px-3 py-2 bg-dark" style = "background-color: rgba(0, 0, 0, 0.6)"> <a class = "text-white" href="/categories/{{ $post->category->slug}}">{{ $post->category->name }}</a> </div>
-                    <img src = "https://source.unsplash.com/500x400?{{ $post->category->slug }}" class="card-img-top" alt="...">
-                    <div class="card-body text-center">
-                        <h5 class="card-title"><a href="/posts/{{ $post->slug }}">{{ $post->title }}</a></h5>
-                        <small class = "text-muted">
-                            <p> by : <a href="../users/{{$posts[0]->user->id}}"> {{ $posts[0]->user->name }} </a>  {{$posts[0]->created_at->diffForHumans()}} </p>
-                        </small>
-                        <p class="card-text">{{ $post->excerpt }}</p>
-                        <a class = "btn btn-primary text-decoration-none" href="/posts/{{ $post->slug }}"> Read more </a>
-                    </div>
-                </div>
-            </div>
-        @endforeach
-    </div>
-</div>
 
 <div class="judul">
     <a class = "btn btn-primary text-decoration-none mb-5" href="/posts"> Back to all Posts </a>
