@@ -14,10 +14,13 @@
           <a class="nav-link {{ $active === "about" ? 'active' : '' }}" href="/about">About</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{ $active === "blog" ? 'active' : '' }}" href="/posts">Posts</a>
+          <a class="nav-link {{ $active === "post" ? 'active' : '' }}" href="/posts">Posts</a>
         </li>
         <li class="nav-item">
           <a class="nav-link {{ $active === "category" ? 'active' : '' }}" href="/categories">Categories</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{ $active === "user" ? 'active' : '' }}" href="/users">Users</a>
         </li>
       </ul>
     </div>

@@ -50,15 +50,17 @@ Route::get('/categories/{category:slug}', function (Category $category) {
 });
 
 Route::get('users', function () {
-    return view('posts', [
+    return view('users', [
         'title' => 'User',
-        'posts' => User::all()
+        'users' => User::all(),
+        'active' => 'user',
     ]);
 });
 
 Route::get('/users/{user:id}', function (User $user) {
     return view('posts', [
         'title' => $user->name,
+        'active' => 'user',
         'posts' => $user->post->load('category', 'user'),
     ]);
 });
