@@ -11,6 +11,11 @@
     .judul{
         text-align: center;
     }
+    .parent{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 </style>
 
 {{-- judul --}}
@@ -54,9 +59,9 @@
 
 
     <div class="container">
-        <div class="row content-justify-center">
+        <div class="row">
             @foreach ($posts->skip(1) as $post)
-                <div class="col-md-4 mb-4" >
+                <div class="col-md-4 mb-4 parent" >
                     <div class="card-group" style="width: 18rem;">
                         <div class = "position-absolute px-3 py-2 bg-dark" style = "background-color: rgba(0, 0, 0, 0.6)"> <a class = "text-white" href="/posts?category={{ $post->category->slug}}">{{ $post->category->name }}</a> </div>
                         <img src = "https://source.unsplash.com/500x400?{{ $post->category->slug }}" class="card-img-top" alt="...">
