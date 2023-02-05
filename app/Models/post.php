@@ -24,6 +24,18 @@ class post extends Model
                 $query->where('slug', $category);
             });
         });
+
+        $query->when($filters['user'] ?? false, function ($query, $user) {
+            return $query->whereHas('user', function ($query) use ($user) {
+                $query->where('username', $user);
+            });
+        });
+
+        // $query->when($filters['user'] ?? false, fn($query, $user) => 
+        //     $query->whereHas('user', fn($query) => 
+        //         $query->where('username', $user)
+        //     )
+        // );
     }
 
     public function category()

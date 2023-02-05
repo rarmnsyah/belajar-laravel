@@ -57,7 +57,7 @@ Route::get('users', function () {
     ]);
 });
 
-Route::get('/users/{user:id}', function (User $user) {
+Route::get('/users/{user:slug}', function (User $user) {
     return view('posts', [
         'title' => $user->name,
         'active' => 'user',

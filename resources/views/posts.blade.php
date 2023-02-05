@@ -15,7 +15,7 @@
 
 {{-- judul --}}
 <div class="judul">
-    <h1 class = "mx-auto mb-3">All {{ $title }}s</h1>
+    <h1 class = "mx-auto mb-3">{{ $title }}</h1>
 </div>
 
 {{-- search div --}}
@@ -25,6 +25,9 @@
             <form action="/posts">
                 @if (request('category'))
                     <input type="hidden" name = "category" value = {{ request('category')}}>
+                @endif
+                @if (request('user'))
+                    <input type="hidden" name = "user" value = {{ request('user')}}>
                 @endif
                 <div class="input-group mb-4">
                     <input type="text" class="form-control" placeholder="Search" name = "search" value = "{{ request('search')}}">
@@ -42,7 +45,7 @@
         <div class="card-body text-center">
             <h3 class="card-title"><a href="/posts/{{ $posts[0]->slug }}">{{ $posts[0]->title }}</a></h3>
             <small>
-                <p> by : <a href="../users/{{$posts[0]->user->id}}"> {{ $posts[0]->user->name }} </a> di kategori <a href="/posts?category={{$posts[0]->category->slug}}"> {{$posts[0]->category->name}} </a> {{$posts[0]->created_at->diffForHumans()}} </p>
+                <p> by : <a href="/posts?user={{$posts[0]->user->username}}"> {{ $posts[0]->user->name }} </a> di kategori <a href="/posts?category={{$posts[0]->category->slug}}"> {{$posts[0]->category->name}} </a> {{$posts[0]->created_at->diffForHumans()}} </p>
             </small>
             <p class="card-text">{{ $posts[0]->excerpt }}</p>
             <a class = "btn btn-primary text-decoration-none" href="/posts/{{ $posts[0]->slug }}"> Read more </a>
@@ -60,7 +63,7 @@
                         <div class="card-body text-center">
                             <h5 class="card-title">{{ $post->title }}</h5>
                             <small class = "text-muted">
-                                <p> by : <a href="../users/{{$posts[0]->user->id}}"> {{ $posts[0]->user->name }} </a>  {{$posts[0]->created_at->diffForHumans()}} </p>
+                                <p> by : <a href="/posts?user={{$posts[0]->user->username}}"> {{ $posts[0]->user->name }} </a>  {{$posts[0]->created_at->diffForHumans()}} </p>
                             </small>
                             <p class="card-text">{{ $post->excerpt }}</p>
                             <a class = "btn btn-primary text-decoration-none" href="/posts/{{ $post->slug }}"> Read more </a>
