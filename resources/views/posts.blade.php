@@ -83,6 +83,10 @@
     <p> No {{ $title }}s found </p>
 @endif
 
+<div class="d-flex justify-content-end">
+    {{ $posts->links() }}
+</div>
+
 {{-- back button --}}
 <div class="judul">
     <a class = "btn btn-primary text-decoration-none mb-5" href="/posts"> Back to all Posts </a>

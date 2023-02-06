@@ -41,11 +41,16 @@ Route::get('/categories', function () {
     ]);
 });
 
-
 Route::get('users', function () {
     return view('users', [
         'title' => 'User',
         'users' => User::all(),
         'active' => 'user',
+    ]);
+});
+
+Route::get('login', function () {
+    return view('login', [
+        'users' => User::all()
     ]);
 });
