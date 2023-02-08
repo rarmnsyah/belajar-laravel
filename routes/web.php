@@ -1,10 +1,10 @@
 <?php
 
-use App\Models\Post;
-use App\Models\Category;
 use App\Models\User;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\LoginController;
 
 Route::get('/', function () {
     return view('home', [
@@ -29,10 +29,6 @@ Route::get('/form', function () {
     ]);
 });
 
-Route::get('/posts', [PostController::class, 'index']);
-
-Route::get('/posts/{post:slug}', [PostController::class, 'show']);
-
 Route::get('/categories', function () {
     return view('categories', [
         'title' => 'Post Categories',
@@ -49,8 +45,10 @@ Route::get('users', function () {
     ]);
 });
 
-Route::get('login', function () {
-    return view('login', [
-        'users' => User::all()
-    ]);
-});
+// Menggunakan route controller mungkin lebih disarankan karena dapat mendistribusikan tiap page secara lebih baik
+// 1 controller biasanya mengekspresikan 1 folder
+Route::get('/posts', [PostController::class, 'index']);
+
+Route::get('/posts/{post:slug}', [PostController::class, 'show']);
+
+Route::get('/login', [LoginController::class, 'index']);
