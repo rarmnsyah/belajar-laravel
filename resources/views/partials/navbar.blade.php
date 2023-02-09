@@ -28,7 +28,7 @@
                     <a class="nav-link {{ $active === 'login' ? 'active' : '' }}" href="/login">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/sign-up">Sign Up</a>
+                    <a class="nav-link {{ $active === 'register' ? 'active' : '' }}" href="/register">Register</a>
                 </li>
             </ul>
         </div>
