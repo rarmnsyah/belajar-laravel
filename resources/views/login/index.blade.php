@@ -4,6 +4,12 @@
     <div class="row justify-content-center">
         <div class="col-lg-4 mt-3">
             <main class="form-signin w-100 m-auto">
+
+                @if (session()->has('success'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('success') }}
+                    </div>
+                @endif
                 <form action="/login" method="post">
                     @csrf
                     <h1 class="h3 mb-3 fw-normal text-center">Please Login</h1>
@@ -19,7 +25,7 @@
                         <label for="floatingPassword">Password</label>
                     </div>
 
-                    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+                    <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">Sign in</button>
                 </form>
                 <small class="d-block text-center mt-3">Not Registered Yet? <a href="/register">Please
                         Register!</a></small>
