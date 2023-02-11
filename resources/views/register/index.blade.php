@@ -13,7 +13,9 @@
                             value="{{ old('name') }}" id="name" placeholder="Name" />
                         <label for="name">Name</label>
                         @error('name')
-                            <div class="invalid-feedback mb-2"><small>{{ $message }}</small></div>
+                            <div class="invalid-feedback mb-2">
+                                <small>{{ $message }}</small>
+                            </div>
                         @enderror
                     </div>
                     <div class="form-floating">
