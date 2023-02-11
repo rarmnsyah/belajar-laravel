@@ -10,6 +10,12 @@
                         {{ session('success') }}
                     </div>
                 @endif
+                @if (session()->has('failed'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>Failed Login!</strong> Wrong email or password
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
                 <form action="/login" method="post">
                     @csrf
                     <h1 class="h3 mb-3 fw-normal text-center">Please Login</h1>

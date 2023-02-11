@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Models\User;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
@@ -49,11 +50,13 @@ Route::get('users', function () {
 // Menggunakan route controller mungkin lebih disarankan karena dapat mendistribusikan tiap page secara lebih baik
 // 1 controller biasanya mengekspresikan 1 folder
 Route::get('/posts', [PostController::class, 'index']);
-
 Route::get('/posts/{post:slug}', [PostController::class, 'show']);
 
-Route::get('/login', [LoginController::class, 'index']);
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/logout', [LoginController::class, 'logout']);
 
-Route::get('/register', [RegisterController::class, 'index']);
+Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');

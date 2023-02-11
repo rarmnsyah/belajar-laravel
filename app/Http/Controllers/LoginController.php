@@ -30,9 +30,7 @@ class LoginController extends Controller
             return redirect()->intended('/dashboard');
         }
 
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ])->onlyInput('email');
+        return back()->with('failed', 'The provided credentials do not match our records.');
 
         // trying manually
         // $user = User::all();
@@ -49,5 +47,16 @@ class LoginController extends Controller
 
         // return $searchUser[0]->username;
 
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 }

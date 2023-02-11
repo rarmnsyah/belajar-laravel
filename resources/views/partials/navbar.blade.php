@@ -23,14 +23,33 @@
                     <a class="nav-link {{ $active === 'user' ? 'active' : '' }}" href="/users">Users</a>
                 </li>
             </ul>
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link {{ $active === 'login' ? 'active' : '' }}" href="/login">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ $active === 'register' ? 'active' : '' }}" href="/register">Register</a>
-                </li>
-            </ul>
+
+            @auth
+                <div class="dropdown">
+                    <button class="btn btn-info dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Welcome back, {{ auth()->user()->name }}
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
+                        <li>
+                            <form action="/logout" method="post">
+                                @csrf
+                                <button class="dropdown-item">Logout</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            @else
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link {{ $active === 'login' ? 'active' : '' }}" href="/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ $active === 'register' ? 'active' : '' }}" href="/register">Register</a>
+                    </li>
+                </ul>
+            @endauth
         </div>
     </div>
 </nav>
