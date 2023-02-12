@@ -12,6 +12,7 @@
 
     {{-- my styles --}}
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
 </head>
 
 <body>
