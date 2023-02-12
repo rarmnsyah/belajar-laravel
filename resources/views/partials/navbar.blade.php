@@ -8,19 +8,20 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link {{ $active === 'home' ? 'active' : '' }}" href='/'>Home</a>
+                    <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href='/'>Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ $active === 'about' ? 'active' : '' }}" href="/about">About</a>
+                    <a class="nav-link {{ Request::is('about') ? 'active' : '' }}" href="/about">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ $active === 'post' ? 'active' : '' }}" href="/posts">Posts</a>
+                    <a class="nav-link {{ Request::is('posts') ? 'active' : '' }}" href="/posts">Posts</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ $active === 'category' ? 'active' : '' }}" href="/categories">Categories</a>
+                    <a class="nav-link {{ Request::is('categories') ? 'active' : '' }}"
+                        href="/categories">Categories</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ $active === 'user' ? 'active' : '' }}" href="/users">Users</a>
+                    <a class="nav-link {{ Request::is('users') ? 'active' : '' }}" href="/users">Users</a>
                 </li>
             </ul>
 

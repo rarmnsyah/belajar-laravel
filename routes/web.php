@@ -6,11 +6,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\DashboardPostController;
 
 Route::get('/', function () {
     return view('home', [
         "title" => "Home",
-        'active' => 'home',
     ]);
 });
 
@@ -18,7 +18,6 @@ Route::get('/about', function () {
     return view('about', [
         "name" => "Risky",
         "email" => "rarmnsyah787@gmail.com",
-        'active' => 'about',
         "title" => "About"
     ]);
 });
@@ -33,7 +32,6 @@ Route::get('/form', function () {
 Route::get('/categories', function () {
     return view('categories', [
         'title' => 'Post Categories',
-        'active' => 'category',
         'categories' => Category::all()
     ]);
 });
@@ -42,7 +40,6 @@ Route::get('users', function () {
     return view('users', [
         'title' => 'User',
         'users' => User::all(),
-        'active' => 'user',
     ]);
 });
 
@@ -61,3 +58,5 @@ Route::post('/register', [RegisterController::class, 'store']);
 Route::get('/dashboard', function () {
     return view('dashboard.index');
 })->middleware('auth');
+
+Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
