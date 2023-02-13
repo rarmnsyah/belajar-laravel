@@ -16,7 +16,6 @@
 
                     <img src="https://source.unsplash.com/1200x400?{{ $post->category->slug }}" class="img-fluid mt-3"
                         alt="...">
-
                     <h6 class="mt-4">{!! $post->body !!}</h2>
                 </article>
             </div>
