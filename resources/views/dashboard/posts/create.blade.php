@@ -14,7 +14,22 @@
             </div>
             <div class="mb-3">
                 <label for="slug" class="form-label">Slug</label>
-                <input type="text" class="form-control" id="slug" name="slug">
+                <input type="text" class="form-control" id="slug" name="slug" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="category" class="form-label">Category</label>
+                <select class="form-select" name="category_id">
+                    <option selected>Select Category</option>
+                    @foreach ($categories as $category)
+                        <h1>{{ $category }}</h1>
+                        <option value=" {{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="body" class="form-label">Category</label>
+                <input id="body" type="hidden" name="content">
+                <trix-editor input="body"></trix-editor>
             </div>
             {{-- <a href="/dashboard/posts/getSlug">asdf</a> --}}
 
@@ -31,5 +46,9 @@
                 .then(response => response.json())
                 .then(data => slug.value = data.slug)
         });
+
+        document.addEventListener('trix-file-accept', function(e) {
+            e.preventDefault();
+        })
     </script>
 @endsection
