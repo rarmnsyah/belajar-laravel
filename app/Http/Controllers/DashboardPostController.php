@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\post;
 use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 class DashboardPostController extends Controller
 {
@@ -41,15 +43,20 @@ class DashboardPostController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
-        // $validatedData = $request->validate([
-        //     'title' => $request->title,
-        //     'slug' => $request->slug,
-        //     'category_id' => $request->category_id,
-        //     'excerpt' => ?,
-        //     'user_id' => ?
-        // ]);
-        // post::create()
+        // return $request;
+        $validatedData = $request->validate([
+            'title' => 'required|max:255',
+            'slug' => 'required|unique:posts',
+            'body' => 'required'
+        ]);
+
+        $validatedData['category_id'] = $request->category_id;
+        $validatedData['user_id'] = auth()->user()->id;
+        $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 100);
+
+        post::create($validatedData);
+
+        return redirect('/dashboard/posts')->with('success', 'New Post Has Been Added');
     }
 
     /**
