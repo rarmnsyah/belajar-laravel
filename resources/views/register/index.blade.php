@@ -38,7 +38,8 @@
                         <input type="password" class="form-control @error('password') is-invalid @enderror" name="password"
                             id="password" placeholder="Password" />
                         <label for="password">Password</label>
-                        <input type="checkbox" onclick="show_hide()"> Show Password
+                        <input class="form-check-input mt-1" type="checkbox" onclick="myFunction()">Show Password
+                        {{-- <input type="checkbox" id='togglePasswords'> Show Password --}}
                         @error('password')
                             <div class="invalid-feedback mb-2"><small>{{ $message }}</small></div>
                         @enderror

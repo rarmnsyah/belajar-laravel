@@ -30,6 +30,7 @@
                     </div>
                     <div class="form-floating">
                         <input type="password" class="form-control" name="password" id="password" placeholder="Password" />
+                        <input class="form-check-input mt-1" type="checkbox" onclick="myFunction()"> Show Password
                         <label for="password">Password</label>
                     </div>
 
