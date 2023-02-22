@@ -10,8 +10,12 @@
                         posts</a>
                     <a class="btn btn-warning" href="/dashboard/posts/ {{ $post->id }}"> <span data-feather="edit"></span>
                         Edit</a>
-                    <a class="btn btn-danger" href="/dashboard/posts/ {{ $post->id }}"> <span
-                            data-feather="x-circle"></span> Delete</a>
+                    <form action="/dashboard/posts/{{ $post->id }}" method="post" class="d-inline">
+                        @method('delete')
+                        @csrf
+                        <button class="btn btn-danger border-0" onclick="return confirm('yakin mau delete dex?')"><span
+                                data-feather="x-circle"></span> Delete Post</button>
+                    </form>
 
                     <img src="https://source.unsplash.com/1200x400?{{ $post->category->slug }}" class="img-fluid mt-3"
                         alt="...">

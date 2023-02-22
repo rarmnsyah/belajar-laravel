@@ -12,7 +12,7 @@
     </div>
 
     @if (session('success'))
-        <div class="alert alert-success" role="alert">
+        <div class="alert alert-success col-lg-8" role="alert">
             {{ session('success') }}
         </div>
     @endif
@@ -41,8 +41,13 @@
                                     data-feather="eye"></span></a>
                             <a class="badge bg-warning" href="/dashboard/posts/ {{ $post->id }}"> <span
                                     data-feather="edit"></span></a>
-                            <a class="badge bg-danger" href="/dashboard/posts/ {{ $post->id }}"> <span
-                                    data-feather="x-circle"></span></a>
+                            
+                            <form action="/dashboard/posts/{{ $post->id }}" method = "post" class = "d-inline">
+                                @method('delete')
+                                @csrf
+                                <button class = "badge bg-danger border-0" onclick="return confirm('yakin mau delete dex?')"><span data-feather="x-circle"></span></button>
+                            </form>
+                            {{-- <a class="badge bg-danger" href="/dashboard/posts/ {{ $post->id }}"> </a> --}}
                         </td>
                     </tr>
                 @endforeach
