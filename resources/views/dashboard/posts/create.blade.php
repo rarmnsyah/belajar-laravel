@@ -24,7 +24,7 @@
                     value="{{ old('slug') }}">
                 @error('slug')
                     <div class="invalid-feedback">
-                        <small>tittle has been used, please using another title</small>
+                        <p>tittle has been used, please using another title</p>
                     </div>
                 @enderror
             </div>
@@ -42,6 +42,9 @@
             </div>
             <div class="mb-3">
                 <label for="body" class="form-label">Body</label>
+                @error('body')
+                    <p class="text-danger">{{ $message }}</p>
+                @enderror
                 <input id="body" type="hidden" name="body" value={{ old('body') }}>
                 <trix-editor input="body"></trix-editor>
             </div>

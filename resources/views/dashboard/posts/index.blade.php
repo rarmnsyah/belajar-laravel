@@ -34,18 +34,21 @@
                 @foreach ($posts as $post)
                     <tr>
                         <td> {{ $loop->iteration }} </td>
-                        <td>{{ $post->title }}</td>
+                        <td><a href="/dashboard/posts/ {{ $post->id }}"
+                                style="text-decoration: none; color:black">{{ $post->title }}</a></td>
                         <td>{{ $post->category->name }}</td>
                         <td>
                             <a class="badge bg-info" href="/dashboard/posts/ {{ $post->id }}"> <span
                                     data-feather="eye"></span></a>
-                            <a class="badge bg-warning" href="/dashboard/posts/ {{ $post->id }}"> <span
+                            <a class="badge bg-warning" href="/dashboard/posts/{{ $post->id }}/edit"> <span
                                     data-feather="edit"></span></a>
-                            
-                            <form action="/dashboard/posts/{{ $post->id }}" method = "post" class = "d-inline">
+
+                            <form action="/dashboard/posts/{{ $post->id }}" method="post" class="d-inline">
                                 @method('delete')
                                 @csrf
-                                <button class = "badge bg-danger border-0" onclick="return confirm('yakin mau delete dex?')"><span data-feather="x-circle"></span></button>
+                                <button class="badge bg-danger border-0"
+                                    onclick="return confirm('yakin mau delete dex?')"><span
+                                        data-feather="x-circle"></span></button>
                             </form>
                             {{-- <a class="badge bg-danger" href="/dashboard/posts/ {{ $post->id }}"> </a> --}}
                         </td>
