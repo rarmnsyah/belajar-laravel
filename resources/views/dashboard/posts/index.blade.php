@@ -27,6 +27,7 @@
                     <th scope="col">No</th>
                     <th scope="col">Title</th>
                     <th scope="col">Category</th>
+                    <th scope="col">Image</th>
                     <th scope="col">Actions</th>
                 </tr>
             </thead>
@@ -37,6 +38,12 @@
                         <td><a href="/dashboard/posts/ {{ $post->id }}"
                                 style="text-decoration: none; color:black">{{ $post->title }}</a></td>
                         <td>{{ $post->category->name }}</td>
+                        @if ($post->image)
+                            <td><img src="{{ asset('storage/' . $post->image) }}" class="img-fluid mt-3" alt="..."></td>
+                        @else
+                            <td><img src="https://source.unsplash.com/1200x400?{{ $post->category->slug }}"
+                                class="img-fluid mt-3" alt="..."></td>
+                        @endif
                         <td>
                             <a class="badge bg-info" href="/dashboard/posts/ {{ $post->id }}"> <span
                                     data-feather="eye"></span></a>

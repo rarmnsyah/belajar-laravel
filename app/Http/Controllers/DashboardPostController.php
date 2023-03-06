@@ -43,12 +43,17 @@ class DashboardPostController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request;
+        // return $request->file('image')->store('post-image');
         $validatedData = $request->validate([
             'title' => 'required|max:255',
             'slug' => 'required|unique:posts',
-            'body' => 'required'
+            'body' => 'required',
+            'image' => 'image|file|max:1024'
         ]);
+
+        if($request->file('image')){
+            $validatedData['image'] = $request->file('image')->store('post-images');
+        }
 
         $validatedData['category_id'] = $request->category_id;
         $validatedData['user_id'] = auth()->user()->id;
@@ -83,7 +88,7 @@ class DashboardPostController extends Controller
      */
     public function edit(post $post)
     {
-        if ($post->user->id !== auth()->user()->id) {
+        if ($post->user->id !== auth()->user()->id) {   
             abort(403);
         }
         return view('dashboard.posts.edit', [

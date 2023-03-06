@@ -54,6 +54,13 @@ class DatabaseSeeder extends Seeder
         //     'user_id' => 1,
         //     'category_id' => 3
         // ]);
+        User::create([
+            'name' => 'Risky Armansyah',
+            'username' => 'dsf',
+            'email' => 'rarmnsyah787@gmail.com',
+            'password' => bcrypt('password')
+        ]);
+        
         User::factory(3)->create();
 
         Category::create([
